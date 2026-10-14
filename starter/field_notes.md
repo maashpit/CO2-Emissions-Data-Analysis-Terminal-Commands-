@@ -117,7 +117,7 @@ Fill in the table from what you actually saw — not a guess from the column
 name alone:
 
 | Column | Inferred type | How I can tell |
-|country|str|GDP|
+|country|str|the country names are text|
 |iso code | str | Country names are text |
 |year | str | the year is in reference to date |
 |population| int | population looks at how many people there are, you cannot have a decimal of a person |
@@ -128,6 +128,7 @@ name alone:
 and a table? (Not a definition you looked up — explain it the way you'd
 explain it to a friend who's never coded. No command needed for this one,
 just think about the table you just filled in above.)
+
 A list/array will be one column of information not seperated by data type whereas a table will have distinct columns and lines that show the different data types and values respectively. 
 
 
@@ -137,7 +138,7 @@ _TODO_
 
 State whether this dataset is structured or unstructured, and why.
 
-This dataset is structured because it has a consistent format seprating. 
+This dataset is structured because it has a consistent format seperating the data types and values uniformly.
 
 ## 5. Before you trust this data
 
@@ -170,13 +171,37 @@ at least one in the counts you just found.
 **My 2 concerns:**
 1. _TODO_
 2. _TODO_
+Your first look (see section 1) turned up a row with a suspiciously blank iso_code. Before you build anything on this data, you want to know exactly how many of the 254 rows share that blank — is it a one-off, or a real pattern worth flagging before anyone draws conclusions from it? You may need more than one command for this — piping (|) feeds one command's output into the next as input.
+
+# TODO: a command (or combination) that counts how many rows have a
+# BLANK iso_code
+
+$ cut -d ',' -f 2 co2_emissions_2022.csv | tail -n +2 | grep -c '^$' 
+
+Output: TODO
+36 
+# TODO: the same idea, but for the gdp column
+
+$ cut -d ',' -f 5 co2_emissions_2022.csv | tail -n +2 | grep -c '^$'
+
+Output: 89
+
+List at least 2 specific things you'd want to know about how this dataset was collected, before trusting any conclusion drawn from it — ground at least one in the counts you just found.
+
+My 2 concerns:
+
+I noticed that 36 entries are missing ISO codes, and several entries are also missing GDP information. I would want to understand why these values are missing and whether certain countries have less complete data than others. If some countries are missing important information, it could make comparisons less accurate.
+
+I noticed that the dataset includes individual countries alongside entire regions like Africa. I would want to know how the regional emissions totals were calculated and whether they include data from countries already listed separately. If they do, combining those rows could cause emissions to be counted more than once.
 
 ## 6. Data-quality question for the source
 
 Take the **most specific and checkable** of the two concerns above, and
-phrase it as a real question you'd send to the data's source/maintainer. A
+phrase it as a real question you'd send to the data's source/maintainer. 
 good test: could they actually answer it with a concrete yes/no or fact —
 not "is this data good?"
+
+How are the emissions totals for regions like Africa calculated, and do they include emissions from the individual countries already listed in the dataset?
 
 _TODO_
 
@@ -190,12 +215,18 @@ curious to compare, and look up their full rows.
 ```bash
 # TODO: a command that finds a specific country's row by name (repeat for
 # a second country of your choice)
+
+grep '^Ethiopia,' co2_emissions_2022.csv
+grep '^United States,' co2_emissions_2022.csv
 ```
 
 **Output:**
-_TODO_
+Ethiopia,ETH,2022,125384285,269977225159,16.960
+United States,USA,2022,341534041,19493170182843,5055.403
 
 **My question:** _TODO_
+
+How do Ethiopia and the United States compare in CO₂ emissions relative to their populations, and what might explain the differences?
 
 ## 8. AI-literacy reflection
 
@@ -206,7 +237,7 @@ fact before relying on it professionally — specific enough that you could
 actually follow it, not "I'll be careful."
 
 **Risks:**
-1. _TODO_
+1.  AI can provide information that sounds accurate without verifying it. 
 2. _TODO_
 
 **My rule:** _TODO_
