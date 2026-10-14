@@ -49,7 +49,15 @@ this repo up (see `README.md`) — `git init`/clone, creating your
 reconstruct it from memory at the end.
 
 ```bash
-# TODO: the commands you actually ran to set up this repo
+git clone url
+git pull origin main
+git add .gitignore
+git git status 
+git commit -m "add gitignore"
+git push
+git git status
+git remote -v
+ls
 ```
 
 ## 1. First look at the raw file
@@ -59,13 +67,18 @@ safe peek at it — not the whole 254-row file, just the **first 5 lines**,
 enough to see the shape of it without scrolling past everything.
 
 ```bash
-# TODO: a command that prints just the first 5 lines of the raw file
+cd data/
+head -n 5 co2_emmissions_2022.csv
 ```
 
 **Output:**
-_TODO: paste what you actually got_
+country,iso_code,year,population,gdp,co2
+Afghanistan,AFG,2022,40578847,53303471617,10.170
+Africa,,2022,1445862695,,1459.114
+Africa (GCP),,2022,,,1459.103
+Albania,ALB,2022,2827614,36171005594,4.498
 
-**What I notice:** _TODO — your raw observations, in your own words_
+**What I notice:** There are missing data values for some of these countries. They are depicted by commas that have nothing in between them. 
 
 ## 2. Column names
 
@@ -75,10 +88,12 @@ a lot easier to scan than one long comma-separated row.
 ```bash
 # TODO: a command (or combination of commands) that prints just the header
 # row, one column name per line
+head -n 1 co2_emissions_2022.csv
 ```
 
 **Output:**
-_TODO_
+country,iso_code,year,population,gpd,co2
+
 
 ## 3. Column-by-column data type table
 
@@ -90,23 +105,31 @@ row. Column numbers for reference: `country`=1, `iso_code`=2, `year`=3,
 ```bash
 # TODO: a command that prints the first 6 values from a single column
 # (repeat this for at least 5 of the 6 columns, swapping in each column's number)
+cut -d ',' -f 1 co2_emissions_2022.csv | tail -n +2 | head -n 6
+cut -d ',' -f 2 co2_emissions_2022.csv | tail -n +2 | head -n 6
+cut -d ',' -f 3 co2_emissions_2022.csv | tail -n +2 | head -n 
+cut -d ',' -f 4 co2_emissions_2022.csv | tail -n +2 | head -n 
+cut -d ',' -f 5 co2_emissions_2022.csv | tail -n +2 | head -n 
+cut -d ',' -f 6 co2_emissions_2022.csv | tail -n +2 | head -n 6
 ```
 
 Fill in the table from what you actually saw — not a guess from the column
 name alone:
 
 | Column | Inferred type | How I can tell |
-|---|---|---|
-| _TODO_ | _TODO_ | _TODO_ |
-| _TODO_ | _TODO_ | _TODO_ |
-| _TODO_ | _TODO_ | _TODO_ |
-| _TODO_ | _TODO_ | _TODO_ |
-| _TODO_ | _TODO_ | _TODO_ |
+|country|str|GDP|
+|iso code | str | Country names are text |
+|year | str | the year is in reference to date |
+|population| int | population looks at how many people there are, you cannot have a decimal of a person |
+|gdp | int | numbers without decimals  |
+|co2 | float | values containdecimals  |
 
 **In your own words:** what's the actual difference between a list/array
 and a table? (Not a definition you looked up — explain it the way you'd
 explain it to a friend who's never coded. No command needed for this one,
 just think about the table you just filled in above.)
+A list/array will be one column of information not seperated by data type whereas a table will have distinct columns and lines that show the different data types and values respectively. 
+
 
 _TODO_
 
@@ -114,7 +137,7 @@ _TODO_
 
 State whether this dataset is structured or unstructured, and why.
 
-_TODO_
+This dataset is structured because it has a consistent format seprating. 
 
 ## 5. Before you trust this data
 
