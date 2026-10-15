@@ -1,180 +1,62 @@
-# Foundations Project: Data Literacy Field Notes
+# CO₂ Emissions Data Analysis
 
-**New here?** Start with `PROJECT_OVERVIEW.md` for what you're building and
-why. This file (`README.md`) is where the step-by-step setup lives — you're
-already in the right place.
+## Project Overview
 
-**Due:** 2 days (this first project is intentionally short — a couple of
-focused days right after this module's content phase, not a full week, since
-it's meant to get you moving, not to be a big lift), plus a share-out
-during TIP this week. See
-`CHECKLIST_TIMELINE.md` for a suggested day-by-day pace and the full
-submission checklist.
+This project was completed as part of Module 0 at The Marcy Lab School's Data Analytics Fellowship.
 
-This repo is a **GitHub template** — a starting point, not something you edit
-directly on Marcy's copy of it. This is the first project of the whole
-program, so this doc assumes you've never done any of this before. Everyone
-in this cohort is on **macOS** — these directions only cover that, on
-purpose, so there's no cross-platform noise to wade through.
+For this assignment, I took on the role of a data analyst working with a climate and energy nonprofit. The organization wanted to use emissions data to determine where climate support and community protection efforts might be needed.
 
-## Getting started
+My responsibility was to explore the dataset, understand how the information was structured, and identify potential data quality concerns before drawing conclusions.
 
-### Step 1: Get your own copy
+## Questions I Set Out to Answer
 
-On this repo's GitHub page, you'll see two buttons that both sound like "make
-a copy" but do different things:
+1. What information is included in the dataset?
+2. Are there missing values that could affect our analysis?
+3. Do regional emissions totals overlap with the individual country totals?
+4. How do Ethiopia and the United States compare in CO₂ emissions relative to their populations?
 
-- **"Use this template"** ← use this one. It creates a brand-new, independent
-  repository under *your* GitHub account, with no visible link back to this
-  template. That's what you want for something that becomes part of your
-  portfolio.
-- **"Fork"** — creates a copy that stays linked to this one (GitHub will show
-  "forked from marcy-lab-school/..." on your repo forever). Fork is the right
-  tool when you intend to contribute changes back to the original project —
-  that's not this. Don't use Fork here.
+## Dataset Source and License
 
-Click **"Use this template" → "Create a new repository,"** name it something
-like `data-literacy-field-notes`, keep it **public** (the assignment requires
-a public repo), and create it.
+The dataset, `co2_emissions_2022.csv`, contains 254 rows of country and regional emissions data from 2022.
 
-### Step 2: Set up your tools
+It includes six columns: `country`, `iso_code`, `year`, `population`, `gdp`, and `co2`.
 
-Tools for this module (all free):
+**Source:** [Our World in Data, CO₂ and Greenhouse Gas Emissions](https://github.com/owid/co2-data)
 
-- **Terminal** — already on your Mac (Applications → Utilities → Terminal, or
-  `Cmd+Space` and type "Terminal").
-- **Git** — check if it's already installed: open Terminal and run `git
-  --version`. If it's not installed, macOS will prompt you to install the
-  Xcode Command Line Tools — accept that prompt.
-- **GitHub** — free tier, unlimited public repos. Create an account if you
-  don't have one.
-- **VS Code** — download from https://code.visualstudio.com (the macOS
-  `.dmg` build), drag it into Applications. You'll use it to edit Markdown
-  files and open a terminal — not to write or run any Python code this
-  project; there is none.
+**License:** Creative Commons Attribution 4.0 International (CC BY 4.0).
 
-### Step 3: Clone your new repo locally
+For more information about the dataset, see [data/SOURCE.md](data/SOURCE.md).
 
-Open **Terminal** (`Cmd+Space`, type "Terminal," hit Enter). On your own new
-repo's page (not this template), click the green **Code** button, copy the
-HTTPS URL, then:
+## Tools and Skills Used
 
-```bash
-git clone <the URL you copied>
-cd <your-repo-name>
-```
+- Git Bash for navigating directories and exploring data
+- Terminal commands including `head`, `tail`, `cut`, `grep`, and pipes
+- Git and GitHub for version control
+- VS Code for editing and documenting findings
+- Markdown for organizing technical documentation
 
-### Step 4: Set up your environment yourself
+## Data Quality Findings
 
-This module is literally about learning git, GitHub, and the terminal — so
-unlike some later projects, this template does **not** come with a
-`.gitignore` already made. Creating it yourself is part of the assignment:
+During my exploration, I found that 36 entries were missing ISO codes and 89 entries were missing GDP values.
 
-- **Create a `.gitignore`.** A `.gitignore` is a plain-text list of files and
-  folders git should never track. From the terminal (inside your repo
-  folder):
-  ```bash
-  touch .gitignore
-  ```
-  Then open `.gitignore` in VS Code, paste in exactly these lines, and save:
-  ```
-  # macOS creates this hidden file in every folder you open in Finder
-  .DS_Store
+I also noticed that the dataset contains individual countries alongside regional totals, which could potentially lead to double counting.
 
-  # VS Code's per-folder editor settings — personal, not part of the project
-  .vscode/
+This led me to my primary data quality question:
 
-  # Python and Jupyter leftovers — you won't make these in this project,
-  # but you will in later modules, so ignore them from day one
-  __pycache__/
-  .ipynb_checkpoints/
-  ```
-  Lines starting with `#` are comments — git skips them. A name ending in
-  `/` means "ignore this whole folder." You'll be asked about what's in your
-  `.gitignore` during share-out, so read the comments rather than just
-  pasting.
-- **Make your first commit.** Once your `.gitignore` is saved:
-  ```bash
-  git add .gitignore
-  git commit -m "add gitignore"
-  git push
-  ```
+**How are emissions totals for regions like Africa calculated, and do they include emissions from the individual countries already listed in the dataset?**
 
-You do **not** need to add a `LICENSE` file for this project.
+My investigation, including terminal commands and recorded output, is documented in [Section 6 of my field notes](starter/field_notes.md#6-data-quality-question-for-the-source).
 
-You should already have `git init`-equivalent setup from cloning (cloning
-sets up the local repo and connects the remote for you) — if you're not sure
-`git status` and `git remote -v` both work cleanly in this folder, that's the
-first thing to check before moving on.
+## Reflection
 
-### What your repo should look like once this step is done
+This project helped me understand that data analysis begins with questioning the information you're given. Before using data to make decisions, it's important to understand its structure, limitations, and source.
 
-```
-your-repo-name/
-├── .gitignore          ← you create this
-├── README.md           ← already here
-├── PROJECT_OVERVIEW.md ← already here
-├── CHECKLIST_TIMELINE.md ← already here
-├── data/               ← already here (the dataset you'll inspect)
-└── starter/
-    └── field_notes.md  ← already here (what you'll fill in)
-```
+I also gained experience using terminal commands to inspect datasets and learned how to document my process using Git and GitHub.
 
-### Writing bash commands (you'll need this)
+## Documentation
 
-Anywhere in this project you write down a terminal command — in
-`starter/field_notes.md`, this file, anywhere — write it in a **fenced code
-block tagged `bash`**, like this:
+[View my complete Data Literacy Field Notes](starter/field_notes.md)
 
-````
-```bash
-git status
-```
-````
-
-Three backticks, the word `bash`, your command, three backticks to close.
-This is the standard way commands are shown in any real README or docs
-site — it renders with syntax highlighting and makes the command
-copy-pasteable, instead of just sitting in a paragraph as plain text.
-
-## Dataset
-
-Everyone in this cohort uses the same dataset — already included at
-`data/co2_emissions_2022.csv`, no download needed. It's a small, curated
-slice (254 rows, 6 columns, the year 2022) of OWID's full public CO2 and
-Greenhouse Gas Emissions dataset. See `data/SOURCE.md` for exactly how it
-was derived and its license (CC BY 4.0, Our World in Data).
-
-Don't substitute a different dataset — using the same one across the cohort
-keeps everyone's grading consistent and means classmates can actually compare
-notes on what they found.
-
-## What to do
-
-See `starter/field_notes.md` — one file for everything: every section tells
-you which terminal command to run, and you fill in the real output you got
-plus your answer, starting from a setup log at the top and ending with a
-real error you hit along the way (start filling it in from Step 1, don't
-reconstruct it at the end). It's where you log commands as you actually run
-them, not reconstructed from memory at the end. `CHECKLIST_TIMELINE.md` has
-the suggested pace across the 2 days and the full step-by-step checklist.
-Your instructor shares the grading rubric separately through the
-classroom — not this repo.
-
-Along the way, you're going to hit at least one confusing terminal error —
-everyone does. When it happens: read the error message, don't just retype
-the command hoping it works. That's exactly what section 9 of
-`starter/field_notes.md` is for.
-
-**Where's the exact bar for "done," and what are the optional stretch
-goals?** Everything required is in `CHECKLIST_TIMELINE.md`, and the
-optional stretch goals are the **Above & Beyond** list at the bottom of
-that same file. For the minimum bar in one short list, use the MVP
-checklist in the LMS, or go back to the original template repo you created
-yours from and switch to its `project-scope` branch to read `MVP.md` (it's
-on the *template's* GitHub page, not your own copy — kept off `main` so it
-doesn't end up sitting in your portfolio repo).
-
-**Share-out:** this week during TIP, we'll share out your data-quality
-questions, how you used AI, and any reflections from the project — so come
-ready to talk about your project.
+**Author:** Maasho  
+**Program:** The Marcy Lab School, Data Analytics Fellowship  
+**Year:** 2026
