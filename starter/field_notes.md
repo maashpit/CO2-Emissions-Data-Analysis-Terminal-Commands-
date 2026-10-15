@@ -113,32 +113,35 @@ cut -d ',' -f 5 co2_emissions_2022.csv | tail -n +2 | head -n
 cut -d ',' -f 6 co2_emissions_2022.csv | tail -n +2 | head -n 6
 ```
 
+
 Fill in the table from what you actually saw — not a guess from the column
 name alone:
 
-| Column | Inferred type | How I can tell |
-|country|str|the country names are text|
-|iso code | str | Country names are text |
-|year | str | the year is in reference to date |
-|population| int | population looks at how many people there are, you cannot have a decimal of a person |
-|gdp | int | numbers without decimals  |
-|co2 | float | values containdecimals  |
+| Column  | Inferred Type | How I can tell |
+| -------- | -------- | -------- |
+ country    | str   | text no numerical value   |
+| iso code    | str   | abbreviations using text  |
+| year    |str   |the year is a piece of the data you treat it as text  |
+ population    | int   | whole numbers only, you cannot have a fraction of a person   |
+  gdp    | int   | only whole number values  |
+   co2    | float  | values contain decimals   |
+
 
 **In your own words:** what's the actual difference between a list/array
 and a table? (Not a definition you looked up — explain it the way you'd
 explain it to a friend who's never coded. No command needed for this one,
 just think about the table you just filled in above.)
 
-A list/array will be one column of information not seperated by data type whereas a table will have distinct columns and lines that show the different data types and values respectively. 
+*A list/array will be one column of information not seperated by data type whereas a table will have distinct columns and lines that show the different data types and values respectively.*
 
 
-_TODO_
+
 
 ## 4. Structured or unstructured?
 
 State whether this dataset is structured or unstructured, and why.
 
-This dataset is structured because it has a consistent format seperating the data types and values uniformly.
+*This dataset is structured because it has a consistent format seperating the data types and values uniformly.*
 
 ## 5. Before you trust this data
 
@@ -151,40 +154,22 @@ command's output into the next as input.
 
 ```bash
 # TODO: a command (or combination) that counts how many rows have a
-# BLANK iso_code
+$ cut -d ',' -f 2 co2_emissions_2022.csv | tail -n +2 | grep -c '^$' 
 ```
 
 **Output:**
-_TODO_
+36
 
 ```bash
 # TODO: the same idea, but for the gdp column
+$cut -d ',' -f 5 co2_emissions_2022.csv | tail -n +2 | grep -c '^$'
 ```
 
 **Output:**
-_TODO_
+89
 
-List **at least 2** specific things you'd want to know about how this
-dataset was collected, before trusting any conclusion drawn from it — ground
-at least one in the counts you just found.
 
-**My 2 concerns:**
-1. _TODO_
-2. _TODO_
-Your first look (see section 1) turned up a row with a suspiciously blank iso_code. Before you build anything on this data, you want to know exactly how many of the 254 rows share that blank — is it a one-off, or a real pattern worth flagging before anyone draws conclusions from it? You may need more than one command for this — piping (|) feeds one command's output into the next as input.
 
-# TODO: a command (or combination) that counts how many rows have a
-# BLANK iso_code
-
-$ cut -d ',' -f 2 co2_emissions_2022.csv | tail -n +2 | grep -c '^$' 
-
-Output: TODO
-36 
-# TODO: the same idea, but for the gdp column
-
-$ cut -d ',' -f 5 co2_emissions_2022.csv | tail -n +2 | grep -c '^$'
-
-Output: 89
 
 List at least 2 specific things you'd want to know about how this dataset was collected, before trusting any conclusion drawn from it — ground at least one in the counts you just found.
 
@@ -201,9 +186,9 @@ phrase it as a real question you'd send to the data's source/maintainer.
 good test: could they actually answer it with a concrete yes/no or fact —
 not "is this data good?"
 
-How are the emissions totals for regions like Africa calculated, and do they include emissions from the individual countries already listed in the dataset?
+*How are the emissions totals for regions like Africa calculated, and do they include emissions from the individual countries already listed in the dataset?*
 
-_TODO_
+
 
 ## 7. Something you're actually curious about
 
@@ -224,9 +209,9 @@ grep '^United States,' co2_emissions_2022.csv
 Ethiopia,ETH,2022,125384285,269977225159,16.960
 United States,USA,2022,341534041,19493170182843,5055.403
 
-**My question:** _TODO_
+**My question:** 
 
-How do Ethiopia and the United States compare in CO₂ emissions relative to their populations, and what might explain the differences?
+*How do Ethiopia and the United States compare in CO₂ emissions relative to their populations, and what might explain the differences?*
 
 ## 8. AI-literacy reflection
 
@@ -238,9 +223,9 @@ actually follow it, not "I'll be careful."
 
 **Risks:**
 1.  AI can provide information that sounds accurate without verifying it. 
-2. _TODO_
+2. AI can become a crutch that you rely on too heavily.
 
-**My rule:** _TODO_
+**My rule:** Try the work first, then verify with AI if what I did works and if there is another way that might be more efficient. Then cross examine that again by trying it. 
 
 ## 9. Something that went wrong (and how you figured it out)
 
@@ -251,10 +236,11 @@ this at least once. Paste the actual command and what actually happened
 fix — not "I googled it and it worked."
 
 ```bash
-# TODO: a command that errored, or gave you unexpected results
+cut -d ',' -f 2 co2_emissions_2022.csv | tail -n +2 | grep -c '^$'
 ```
 
 **What happened:**
-_TODO: the actual error message, or the unexpected output you got_
+*ParseError: KaTeX parse error: Expected group after '^' at position 65: … +2 | grep -c '^̲'*
 
-**What it told me and how I fixed it:** _TODO_
+**What it told me and how I fixed it:** 
+*I expected the command to show up normally on the preview but it didn't it just gave me this weird error message that I didn't understand so I looked it up. aTeX is a tool for displaying math, so the error meant the viewer thought my command was a math formula.the command itself was never broken. The error came from how the notes file was formatted, not from the terminal.*
